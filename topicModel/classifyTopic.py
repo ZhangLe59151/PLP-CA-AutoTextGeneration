@@ -64,18 +64,18 @@ def Model(twitter):
                      ('tfidf', TfidfTransformer()), #DTM with TFIDF
                       ('clf', svm.LinearSVC(C=1.0)),     #ML Model MultinomialNB() # svm.LinearSVC(C=1.0)
                     ])
-  text_clf.fit(X_train,y_train)
+  text_clf.fit(X_train.values.astype('U'), y_train.values.astype('U'))
   return text_clf, X_test, y_test
 
 def predictedModel(text_clf, X_test, y_test):
-  predicted = text_clf.predict(X_test)
-  print(metrics.confusion_matrix(y_test, predicted))
-  print("NB:",np.mean(predicted == y_test) )
+  predicted = text_clf.predict(X_test.values.astype('U'))
+  print(metrics.confusion_matrix(y_test.values.astype('U'), predicted))
+  print("NB:",np.mean(predicted == y_test.values.astype('U')))
 
-twitter = loadData('topicModel/trainData/economy_1.csv', 'topicModel/trainData/quarantine_1.csv','topicModel/trainData/vaccine_1.csv')
+twitter = loadData('topicModel/trainData/economy_new.csv', 'topicModel/trainData/quarantine_new.csv', 'topicModel/trainData/vaccine_new.csv')
 text_clf, X_test, y_test = Model(twitter)
 predictedModel(text_clf, X_test, y_test)
 #
-docs_new = ['Crude price is dropping ', 'rate is increasing']
+docs_new = ["Polio vaccines, given multiple times, can protect a child for life. Proper hygiene and sanitation"]
 predicted = text_clf.predict(docs_new)
 print(predicted)
