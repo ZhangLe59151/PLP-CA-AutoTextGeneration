@@ -70,7 +70,7 @@ def Model(twitter):
 def predictedModel(text_clf, X_test, y_test):
   predicted = text_clf.predict(X_test.values.astype('U'))
   print(metrics.confusion_matrix(y_test.values.astype('U'), predicted))
-  print("NB:",np.mean(predicted == y_test.values.astype('U')))
+  # print("NB:",np.mean(predicted == y_test.values.astype('U')))
 
 twitter = loadData('topicModel/trainData/economy_new.csv', 'topicModel/trainData/quarantine_new.csv', 'topicModel/trainData/vaccine_new.csv')
 text_clf, X_test, y_test = Model(twitter)
