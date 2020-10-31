@@ -73,10 +73,10 @@ def predictedModel(text_clf, X_test, y_test):
   print(metrics.confusion_matrix(y_test.values.astype('U'), predicted))
   # print("NB:",np.mean(predicted == y_test.values.astype('U')))
 
-if __name__=="__main__":
+def MainFunction(sentence):
   twitter = loadData('topicModel/trainData/economy_new.csv', 'topicModel/trainData/quarantine_new.csv', 'topicModel/trainData/vaccine_new.csv')
   text_clf, X_test, y_test = Model(twitter)
   predictedModel(text_clf, X_test, y_test)
-  docs_new = str(sys.argv) #["Africa’s corona response rests on two things: markets and money transfers"]
+  docs_new = str(sentence) #["Africa’s corona response rests on two things: markets and money transfers"]
   predicted = text_clf.predict(docs_new)
   return predicted
