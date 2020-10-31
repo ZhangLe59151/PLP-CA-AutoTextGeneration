@@ -65,13 +65,13 @@ def predicTopicLabel(input_ids, attention_masks):
     result_label = 'vaccine'
   else:
     result_label = 'quarantine'
-  print(result_label)
+  return result_label
 
-sentences = [
-  'Africa’s corona response rests on two things: markets and money transfers'
-  ]
-input_ids, attention_masks = bertEmbedding(sentences)
-predicTopicLabel(input_ids, attention_masks)
+def MainFunction(sentence):
+  sentences = [sentence]
+  input_ids, attention_masks = bertEmbedding(sentences)
+  result_label = predicTopicLabel(input_ids, attention_masks)
+  return result_label
 
 
 
